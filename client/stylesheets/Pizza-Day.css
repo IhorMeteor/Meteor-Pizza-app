@@ -1,0 +1,160 @@
+/* CSS declarations go here */
+body {
+	background-color: rgb(238,238,238);
+}
+.main-page {
+	
+	background: white url(Pizza-main.png) no-repeat center center;
+
+}
+
+.group-page {
+	border-radius: 6px;
+	margin-bottom: 30px;
+	padding: 15px;
+}
+
+.times {
+	cursor: pointer;
+}
+
+.scroll {
+	border: 1px solid rgba(204,204,204,0.5);
+	border-radius: 6px;
+	background-color: white;
+	height: 150px;
+	overflow-y:scroll;
+}
+.GroupName{
+	border:none;
+    font-size: 17px;
+    font-family: "Verdana";
+    padding:0.15em;
+    width: 100%;
+}
+
+.form-invis {
+	border:none;
+    font-size: 17px;
+    font-family: "Verdana";
+    padding:0.15em;
+    width: 100%;
+}
+
+.form-invis:hover {
+	background-color: #f9f9f9;
+    cursor:pointer;
+}
+
+.form-invis:focus {
+	 background-color: #f9f9f9;
+    cursor:default;
+    outline:none;
+}
+.side-nav-user{
+	background-color: rgb(255, 153, 51);
+	padding-top: 15px;
+	padding-bottom: 15px;
+	min-height: 460px;
+	border: 1px solid rgba(204,204,204,0.5);
+	border-radius: 6px;
+}
+
+
+
+.group-page .jumbotron {
+	background: url(Pizza-group.png) no-repeat center center;
+}
+
+.list-group a {
+	margin: 5px 0px;
+}
+
+.group {
+	
+	padding: 5px;
+	
+}
+
+[class$="page"] {
+	background-color: white;
+	min-height: 800px;
+}
+
+.info-page {
+	border-radius: 6px;
+	margin-bottom: 30px;
+	padding: 15px;
+}
+
+.login-page {
+	background: rgba(255,255,255,1) url("access.png") no-repeat center center;
+	background-size: 400px 400px;
+	
+}
+
+.groupedit-page {
+	border-radius: 6px;
+	margin-bottom: 30px;
+	padding: 0px 15px 15px 15px;
+}
+
+.selected{
+	box-shadow: 0px 0px 7px;
+}
+
+.thumbnail {
+	cursor:pointer;
+}
+
+.big-text {
+	font-size: 17px;
+}
+
+.invite-user {
+	margin-top: 15px;
+}
+
+
+.navbar-brand {
+	background: url(Pizza.png) no-repeat center center;
+	background-size: 70% 100%;
+
+}
+
+.container .navbar-header a {
+	color: white;
+	text-shadow: 0px 0px 7px #000;
+	
+}
+
+.container .navbar-header a:hover {
+	text-shadow: 1px 2px 3px #000;
+	
+}
+
+
+.footer {
+	background-color: rgb(34,34,34);
+	color: rgb(156,156,156);
+	height: 50px;
+	padding: 15px;
+	border-radius: 5px;
+
+}
+
+
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .main-page {
+        background-size: contain;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    /* For mobile phones: */
+  .item-float-right {
+	float: right;
+}
+}

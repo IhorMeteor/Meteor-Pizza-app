@@ -1,0 +1,57 @@
+<template name="groupedit">
+<div class="container-fluid text-center groupedit-page">    
+  <div class="row content ">
+    <div class="col-md-2 sidenav side-nav-user ">
+     
+      <button type="button" class="btn btn-block btn-primary">Create event</button>
+      <button type="button" class="btn btn-block btn-primary button-add-item">Add item</button>
+      <button type="button" class="btn btn-block btn-primary button-invite">Invite user</button>
+      <hr />
+     {{>users}}
+    </div>
+    {{#if showFormItem}}
+    {{>additem}}
+     {{else}}
+    <div class="col-md-10 text-left"> 
+      <h4>Group name:</h4>
+      <p class="GroupName">{{name}}</p>
+      
+      <h4>Description:</h4><input class="form-invis" type="text" value="{{describe}}" name="describe" placeholder="Describe your group...">
+      
+      <hr>
+    
+      
+    </div>
+    
+    {{/if}}
+    {{#if noItems}}
+    <h3 class="text-center"><small>Currently no orders...</small></h3>
+    {{/if}}
+    {{#each items}}
+    <div class="col-md-10 item-float-right">
+  
+  <div class="list-group">
+    <div href="#" class="list-group-item text-left ">
+      <h4 class="text-left"> Order by: {{author}}</h4>
+      <hr/>
+      <h4 class="list-group-item-heading">{{name}}</h4>
+      <p class="list-group-item-text">{{price}}$</p>
+
+    </div>
+     </div>
+
+</div>
+{{/each}}
+<div class="col-md-12">
+  
+<hr/>
+<p>Total amount: {{sum}}$</p>
+  
+</div> 
+
+  </div>
+
+
+
+</div>
+</template>
