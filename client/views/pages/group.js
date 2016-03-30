@@ -1,26 +1,24 @@
 Template.group.helpers({
-	"group":function () {
+	"group": function () {
 		var currentUser = Meteor.userId();
 		if (!Session.get("onCheck")) {
-		return Groups.find({$or :[{createdBy:currentUser},{"allowedUsers.userId":currentUser}]},{sort:{createdAt:-1}});
+			return Groups.find({$or: [{createdBy: currentUser}, {"allowedUsers.userId": currentUser}]}, {sort: {createdAt:-1}});
 		}else{
-		return Groups.find({createdBy:currentUser},{sort:{createdAt:-1}});
+			return Groups.find({createdBy: currentUser}, {sort: {createdAt: -1}});
 		}
 	},
-	"selected":function(){
-		var isSelected = this.selected;
-		var currentUser = Meteor.userId();
-		var createdById = this.createdBy;
-		if(isSelected && createdById == currentUser){
+
+	"selected": function(){
+		if(this.selected && this.createdBy == Meteor.userId()){
 			return "selected";
 		}else{
 			return "";
 		}
 	},
-	"invited":function(){
-		var currentUser = Meteor.userId();
+
+	"invited": function(){
 		var groupId = this._id;
-		var group = Groups.find({"_id":groupId,"allowedUsers.userId":currentUser}).count();
+		var group = Groups.find({_id: groupId, "allowedUsers.userId": Meteor.userId()}).count();
 		if(group){
 			return "invited!";
 		}
@@ -28,21 +26,14 @@ Template.group.helpers({
 });
 
 
-
+//You can select only your groups
 Template.group.events({
-	"click .thumbnail":function(event){
+	"click .thumbnail": function(event){
 		if(event.target.tagName.toLowerCase() !== "a"){
-		var documentId = this._id;
-		var selected = this.selected;
-		var currentUser = Meteor.userId();
-		var createdById = this.createdBy;
-		if(currentUser == createdById){ 
-		if(selected){
-			Groups.update(documentId, {$set:{selected:false}});
-		}else{
-			Groups.update(documentId, {$set:{selected:true}});
-		}
-	}
-	 }
+
+			//make element selected
+			Meteor.call("makeElementSelected", this._id, this.selected, this.createdBy);
+			
+	  }
 	}
 });

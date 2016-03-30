@@ -1,48 +1,45 @@
 Template.users.events({
-	"submit .users-form":function (event) {
-
+	"submit .users-form": function (event) {
 		event.preventDefault();
-		var user = $("[name='users-invite-form']").val();
+		var userEmail = $("[name='users-invite-form']").val();
 		var groupId = this._id;
-		Meteor.call("userExists",user,groupId,function(error){
+		// check if user exists and invite him to group
+		Meteor.call("userExists", userEmail, groupId, function(error){
+
 			if(error){
 				alert(error.message);
-			}
-			else{
+			}else{
 				$("[name='users-invite-form']").val("");
 			}
-		});
-		
-	  
-	  	
-	  
+
+		});  
 	},
 
-	"click .times":function(){
-		event.preventDefault();
-		var currentEmail = this.email;
-		var currentUser = Meteor.userId();
+	"click .times": function(){
 		var groupId = this.group;
-		if(Groups.find({"_id":groupId,"createdBy":currentUser}).count()){ 
-		
-		Meteor.call("deleteUser",currentEmail,groupId,function(error){
-			if (error) {
-				alert(error.message);
-			}
-		});
+
+		if(Groups.find({_id: groupId, createdBy: Meteor.userId()}).count()){ 	
+			Meteor.call("deleteUser", this.email, groupId, function(error){
+
+				if (error) {
+					alert(error.message);
+				}
+
+			});
 		}
 	}
+
 });
 
 
 Template.users.helpers({
-	"userInGroup":function(){
+	"userInGroup": function(){
 		var groupId = this._id;
-		return Groups.find({"_id":groupId});
+		return Groups.find({_id: groupId});
 	},
-	"owner":function(){
-    var currentUser = Meteor.userId();
-    if(this.createdBy == currentUser){
+	
+	"owner": function(){
+    if(this.createdBy == Meteor.userId()){
       return true;
     }
   }

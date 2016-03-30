@@ -1,54 +1,55 @@
 <template name="groups">
-	
+	<div class="container-fluid text-center group-page">
+		<div class="jumbotron"></div>
+
+		<div class="row content group">
+			<!-- Create/Remove group buttons -->
+			<div class="col-md-3">
+				<ul class="nav nav-pills nav-stacked">
+					<li class="active create-group"><a href="#">Create group</a></li>
+					<li class="remove-button"><a href="#">Remove group</a></li>
+					<li><input type="checkbox" name="invit" {{checked}}> Hide invitation</li>
+				</ul>
+				<hr />
+			</div>
 
 
-	<div class="container-fluid text-center group-page">    
-          <div class="jumbotron">
-  		  </div>
+			{{#if showForm}}
 
-  <div class="row content group">
-		<div class="col-md-3">
+				<!--Group creation form -->
+				<div class="col-md-9">
+					<form class="group-form">
+						<label class="label-left" for="grp">Please enter a group name:</label>
+						<input class="form-control" type="text" name="name" placeholder="Group name" id="grp">
+					</form>
+					<hr />
+					<!--If no groups -->
+					{{#if itemsTrue}}
+						<h3 class="text-center"><small>No groups currently available</small></h3>
+					{{/if}}
+				</div>
 
-		      <ul class="nav nav-pills nav-stacked">
-		        <li class="active create-group"><a href="#">Create group</a></li>
-		        <li class="remove-button"><a href="#">Remove group</a></li>
-		        <li><input type="checkbox" name="invit" {{checked}}> Hide invitation</li>
-		      </ul>
-		      <hr />
+			{{else}}
 
+			  <!--Group creation welcome message -->
+				<div class="col-md-9 text-left"> 
+					<h1>Welcome</h1>
+					<p>Greate your group...</p>
+					<hr />
+					<!--If no groups -->
+					{{#if itemsTrue}}
+						<h3 class="text-center"><small>No groups currently available</small></h3>
+					{{/if}}
+				</div>
+
+			{{/if}}
+				
+			<div class="col-md-12 border">
+				{{>group}}  
+			</div>
+		
 		</div>
-	{{#if showForm}}
-	<div class="col-md-9">
-
-		<form class="group-form">
-			<label class="label-left" for="grp">Please enter a group name:</label>
-			<input class="form-control" type="text" name="name" placeholder="Group name" id="grp">
-		</form>
-
-		<hr>
-		{{#if itemsTrue}}
-        <h3 class="text-center"><small>No groups currently available</small></h3>
-        {{/if}}
-	</div>
-	{{else}}
-	<div class="col-md-9 text-left"> 
-      <h1>Welcome</h1>
-      <p>Greate your group...</p>
-      <hr>
-      {{#if itemsTrue}}
-      <h3 class="text-center"><small>No groups currently available</small></h3>
-      {{/if}}
-    </div>
-    {{/if}}
-	
-	<div class="col-md-12 border">
-		{{>group}}  
-	</div>
-	
-</div>
 
 
-</div>
-
-	
+	</div>	
 </template>

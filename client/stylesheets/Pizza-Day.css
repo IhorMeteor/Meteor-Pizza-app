@@ -25,6 +25,7 @@ body {
 	height: 150px;
 	overflow-y:scroll;
 }
+
 .GroupName{
 	border:none;
     font-size: 17px;
@@ -89,8 +90,15 @@ body {
 
 .login-page {
 	background: rgba(255,255,255,1) url("access.png") no-repeat center center;
-	background-size: 400px 400px;
-	
+	background-size: 400px 400px;	
+}
+
+.menu-items {
+	padding-top: 15px;
+	border-bottom: 1px solid #eeeeee;
+	max-height: 216px;
+	overflow-y:auto;
+	margin-bottom: 20px;
 }
 
 .groupedit-page {
@@ -120,6 +128,10 @@ body {
 	background: url(Pizza.png) no-repeat center center;
 	background-size: 70% 100%;
 
+}
+
+.navbar-nav a{
+	outline: 0;
 }
 
 .container .navbar-header a {
@@ -156,5 +168,5 @@ body {
     /* For mobile phones: */
   .item-float-right {
 	float: right;
-}
+	}
 }

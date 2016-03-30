@@ -1,0 +1,16 @@
+<template name="menuitems">
+	<div class="menu-items col-md-10">
+		{{#each menuItems}}
+			<div class="col-md-2 col-sm-3">
+
+					<div class="thumbnail">
+						<small><h4>{{name}} </h4></small> 
+						<img src="{{img}}" alt="coke" style="width:100px;height:100px" />      
+						<a class="btn btn-default">Price: {{price}}$</a>
+					</div>
+					     
+			</div>
+		{{/each}}
+	</div>
+	
+</template>

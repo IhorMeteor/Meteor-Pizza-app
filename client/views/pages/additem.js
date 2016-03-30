@@ -1,17 +1,15 @@
+// add item to group order list
 Template.additem.events({
-	"submit .item-form":function (event) {
+	"submit .item-form": function (event) {
 		event.preventDefault();
-		Session.set("showItemForm",false);
-		var itemPrice = $("[name='item-price']").val();
+		var itemPrice = parseInt($("[name='item-price']").val());
 		var itemName = $("[name='item-name']").val();
-		var groupId = this._id;
 		
-		Items.insert({"belongTo":groupId,"name":itemName,"price":itemPrice,"author":Meteor.user().emails[0].address});
-
+		Meteor.call("orderItem", itemName, itemPrice, this._id);
+		$("[name='item-name']").val("");
+		$("[name='item-price']").val("");
 		
-	
+			
 		
-
 	}
-
 });

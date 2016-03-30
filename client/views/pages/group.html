@@ -1,19 +1,16 @@
 <template name="group">
-	
 	{{#each group}}
-	 <div class="col-md-6">
-	 	 
-      <div class="thumbnail {{selected}}">
-      	<small><h4>{{name}} <span class="badge">{{invited}}</span></h4></small> 
-      	<img src="restoran.png" alt="Pulpit Rock" style="width:150px;height:150px">
-          
-        <a href="{{pathFor route='groupedit'}}" class="btn btn-default">View group</a>
-      </div>
-      
-    </div>
-    
 
-	{{/each}}
-	
+		<div class="col-md-6">
+
+			<div class="thumbnail {{selected}}">
+				<small><h4>{{name}} <span class="badge">{{invited}}</span></h4></small> 
+				<img src="restoran.png" alt="Pulpit Rock" style="width:150px;height:150px">      
+				<a href="{{pathFor route='groupedit'}}" class="btn btn-default">View group</a>
+			</div>
+			     
+		</div>
+
+	{{/each}}	
 </template>
 

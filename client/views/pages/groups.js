@@ -1,56 +1,59 @@
+Template.groups.onCreated(function() {
+	this.createGroupForm = new ReactiveVar(false);
+});
+
+
+
 Template.groups.helpers({
-	"showForm":function(){
-		return Session.get("createForm");
+	"showForm": function(){
+		return Template.instance().createGroupForm.get();
 	},
-	"itemsTrue":function(){
-		 var currentUser = Meteor.userId();
-		if (Groups.find({$or :[{createdBy:currentUser},{"allowedUsers.userId":currentUser}]}).count()) {
+
+	"itemsTrue": function(){
+		if (Groups.find().count()) {
 			return false;
 		}else{
 			return true;
 		}
 	},
-	"checked":function(){
+
+	"checked": function(){
 		if(Session.get("onCheck")){ 
-		return "checked";
+			return "checked";
 		}
 	}
 });
 
 
 Template.groups.events({
-	"click .create-group":function (event) {
-		event.preventDefault();
-		Session.set("createForm",true);
-		},
-	"submit .group-form":function(event){
+	// click to make group creation form visible
+	"click .create-group": function (event, template) {
+		template.createGroupForm.set(true);
+	},
+	// create your own group
+	"submit .group-form": function(event, template){
 		event.preventDefault();
 		var groupName = $("[name='name']").val();
-		var currentUser = Meteor.userId();
-		Groups.insert({
-			name:groupName,
-			createdBy:currentUser,
-			createdAt:new Date(),
-			allowedUsers:[]
-
-		});
-		Session.set("createForm",false);
+		
+		Meteor.call("groupCreate", groupName);
+		template.createGroupForm.set(false);
 		Router.go("/groups");
 	},
-	"click .remove-button":function(){
+	// remove your own group
+	"click .remove-button": function(){
 		var selected = Groups.findOne({selected:true});
-		if(selected.createdBy == Meteor.userId() ){
-		if(selected){
-		Groups.remove(selected._id);
-		 }
+		if(selected.createdBy == Meteor.userId()){
+
+			if(selected)
+				Meteor.call("deleteGroup", selected._id);
+
 		}else{
 			alert("You can remove only your groups");
 		}
 	},
 
-	"change [name='invit']":function(event){
-		event.preventDefault();
-		Session.set("onCheck",event.target.checked);
+	"change [name='invit']": function(event){
+		Session.set("onCheck", event.target.checked);
 
 	}
 });

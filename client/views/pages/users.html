@@ -1,23 +1,24 @@
 <template name="users">
-	 <div class="invite-user ">
-     {{#if owner}}
-      <form class="users-form">
-        
-  		<label for="ex2">Invite user</label>
-  		<input class="form-control" id="ex2" type="text" name="users-invite-form" placeholder="user@mail.com">
-	
+  <div class="invite-user ">
 
+    <!--invite form visible only for group owners-->
+    {{#if owner}}
+      <form class="users-form">
+  		  <label for="ex2">Invite user</label>
+  		  <input class="form-control" id="ex2" type="text" name="users-invite-form" placeholder="user@mail.com">
       </form>
-      {{/if}}
-      <h4>Invited users:</h4>
-      <div class="scroll">
-        {{#each userInGroup}}
-      	{{#each allowedUsers}}
+    {{/if}}
+
+    <h4>Invited users:</h4>
+
+    <!--invited users list-->
+    <div class="scroll">
+      {{#each userInGroup}}
+        {{#each allowedUsers}}
           <p>{{email}} <span class="times">&times;</span></p>
         {{/each}}
-        {{/each}}
-  	 </div>
+      {{/each}}
+  	</div>
 
-    </div>
-
+  </div>
 </template>

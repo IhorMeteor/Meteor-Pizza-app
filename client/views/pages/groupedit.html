@@ -1,57 +1,59 @@
 <template name="groupedit">
-<div class="container-fluid text-center groupedit-page">    
-  <div class="row content ">
-    <div class="col-md-2 sidenav side-nav-user ">
-     
-      <button type="button" class="btn btn-block btn-primary">Create event</button>
-      <button type="button" class="btn btn-block btn-primary button-add-item">Add item</button>
-      <button type="button" class="btn btn-block btn-primary button-invite">Invite user</button>
-      <hr />
-     {{>users}}
-    </div>
-    {{#if showFormItem}}
-    {{>additem}}
-     {{else}}
-    <div class="col-md-10 text-left"> 
-      <h4>Group name:</h4>
-      <p class="GroupName">{{name}}</p>
+  <div class="container-fluid text-center groupedit-page">    
+    <div class="row content ">
+      <!--Group menu buttons -->
+      <div class="col-md-2 sidenav side-nav-user ">
+        
+        <button type="button" class="btn btn-block btn-primary button-group-home">Group main page</button>
+        <button type="button" class="btn btn-block btn-primary button-menu-items">Menu item</button>
+        <button type="button" class="btn btn-block btn-primary button-add-item">Add custom item</button>
+        <button type="button" class="btn btn-block btn-primary button-invite">Invite user</button>
+        <hr />
+        {{>users}}
+      </div>
+
+      {{#if showFormItem}}
+        {{> Template.dynamic template=template}}
+      {{else}}
+
+        <div class="col-md-10 text-left"> 
+          <h4>Group name:</h4>
+          <p class="GroupName">{{name}}</p>    
+          <h4>Description:</h4><input class="form-invis" type="text" value="{{describe}}" name="describe" placeholder="Describe your group...">    
+          <hr> 
+        </div>
       
-      <h4>Description:</h4><input class="form-invis" type="text" value="{{describe}}" name="describe" placeholder="Describe your group...">
+      {{/if}}
+
       
-      <hr>
-    
+      <h3 class="text-center"><small>{{noItems}}</small></h3>
       
-    </div>
-    
-    {{/if}}
-    {{#if noItems}}
-    <h3 class="text-center"><small>Currently no orders...</small></h3>
-    {{/if}}
-    {{#each items}}
-    <div class="col-md-10 item-float-right">
-  
-  <div class="list-group">
-    <div href="#" class="list-group-item text-left ">
-      <h4 class="text-left"> Order by: {{author}}</h4>
-      <hr/>
-      <h4 class="list-group-item-heading">{{name}}</h4>
-      <p class="list-group-item-text">{{price}}$</p>
+
+
+      <!-- Users order item in order list-->
+      {{#each items}}
+        <div class="col-md-10 item-float-right">
+          <div class="list-group">
+
+            <div href="#" class="list-group-item text-left ">
+              <div class="row">
+                <h4 class="text-left col-md-10"><span class="glyphicon glyphicon-user"></span> Order by: {{author}} </h4> <p class="text-right btn btn-danger col-md-2">Delete</p>
+              </div>
+              <hr/>
+              <h4 class="list-group-item-heading">{{name}}</h4>
+              <p class="list-group-item-text">{{price}}$</p>
+            </div>
+
+          </div>
+        </div>
+      {{/each}}
+
+      <!--Order items sum calculation -->
+      <div class="col-md-12">
+        <hr/>
+        <p>Total amount: {{sum}}$</p>
+      </div> 
 
     </div>
-     </div>
-
-</div>
-{{/each}}
-<div class="col-md-12">
-  
-<hr/>
-<p>Total amount: {{sum}}$</p>
-  
-</div> 
-
   </div>
-
-
-
-</div>
 </template>
