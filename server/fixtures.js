@@ -40,7 +40,7 @@ if(Menu.find().count() === 0){
 
 	Menu.insert({
 		name: "Vegetarian pizza",
-		img: "../vegetarian-pizza.jpg",
+		img: "../vegetarian-pizza.png",
 		price: 7
 	});
 
